@@ -23,3 +23,12 @@ econ = econ';
 
 econPred = net(carData(:,tr.testInd));
 plotregression(econ(tr.testInd),econPred)
+%Update net so there are two layers where the first layer has eight neurons and the second layer has 12 neurons.
+net = fitnet([8 12]);
+carData = carData';
+econ = econ';
+[net,tr] = train(net,carData,econ);
+%Predict response and evaluate network performance
+
+econPred = net(carData(:,tr.testInd))
+plotregression(econ(tr.testInd),econPred)
